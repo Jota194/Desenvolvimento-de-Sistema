@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Empréstimo - Juros Simples</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        #resultado {
+            margin-top: 15px;
+            text-align: left;
+            font-size: 15px;
+            color: #333;
+        }
+
+        .mes {
+            background: #f8f9fa;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Calcular Empréstimo</h2>
+
+        <input type="number" id="meses" placeholder="Número de meses">
+
+        <br>
+        <button onclick="calcular()">Calcular</button>
+
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function calcular() {
+            const capital = 1000;
+            const taxa = 0.05;
+
+            const meses = Number(document.getElementById("meses").value);
+            const resultado = document.getElementById("resultado");
+
+            if (meses <= 0) {
+                resultado.innerHTML = "Digite um número válido de meses.";
+                return;
+            }
+
+            const juros = capital * taxa * meses;
+
+            const total = capital + juros;
+
+            let texto = `
+                <strong>Juros total:</strong> R$ ${juros.toFixed(2)}<br>
+                <strong>Valor final:</strong> R$ ${total.toFixed(2)}<br><br>
+                <strong>Detalhamento mensal:</strong>
+            `;
+
+
+            for (let i = 1; i <= meses; i++) {
+                let jurosMensal = capital * taxa;
+                let acumulado = capital + (jurosMensal * i);
+
+                texto += `
+                    <div class="mes">
+                        Mês ${i}: Juros = R$ ${jurosMensal.toFixed(2)} |
+                        Total acumulado = R$ ${acumulado.toFixed(2)}
+                    </div>
+                `;
+            }
+
+            resultado.innerHTML = texto;
+        }
+    </script>
+</body>
+</html>

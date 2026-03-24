@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Média de Vendas Semanais</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 320px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .resultado {
+      margin-top: 15px;
+      background: #eef;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Vendas Semanais</h2>
+
+  <input type="number" id="dia1" placeholder="Dia 1">
+  <input type="number" id="dia2" placeholder="Dia 2">
+  <input type="number" id="dia3" placeholder="Dia 3">
+  <input type="number" id="dia4" placeholder="Dia 4">
+  <input type="number" id="dia5" placeholder="Dia 5">
+  <input type="number" id="dia6" placeholder="Dia 6">
+  <input type="number" id="dia7" placeholder="Dia 7">
+
+  <button onclick="calcular()">Calcular</button>
+
+  <div class="resultado" id="resultado"></div>
+</div>
+
+<script>
+  function calcular() {
+    let vendas = [];
+
+    for (let i = 1; i <= 7; i++) {
+      let valor = parseFloat(document.getElementById("dia" + i).value) || 0;
+      vendas.push(valor);
+    }
+
+    let total = vendas.reduce((acc, val) => acc + val, 0);
+    let media = total / 7;
+    let maior = Math.max(...vendas);
+
+    document.getElementById("resultado").innerHTML = `
+      <p><strong>Total da semana:</strong> R$ ${total.toFixed(2)}</p>
+      <p><strong>Média diária:</strong> R$ ${media.toFixed(2)}</p>
+      <p><strong>Maior venda:</strong> R$ ${maior.toFixed(2)}</p>
+    `;
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lucro da Loja</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input {
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #resultado {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #28a745;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Calcular Lucro</h2>
+        <input type="number" id="quantidade" placeholder="Qtd. vendida">
+        <br>
+        <button onclick="calcularLucro()">Calcular</button>
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        function calcularLucro() {
+            const precoCusto = 25.00;
+            const precoVenda = 40.00;
+
+            const quantidade = Number(document.getElementById("quantidade").value);
+
+            const lucroPorUnidade = precoVenda - precoCusto;
+            const lucroTotal = quantidade * lucroPorUnidade;
+
+            document.getElementById("resultado").innerText =
+                "Lucro total: R$ " + lucroTotal.toFixed(2);
+        }
+    </script>
+</body>
+</html>
