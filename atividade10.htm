@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Investimento com Juros Compostos</title>
+</head>
+<body>
+    <h2>Calculadora de Investimento </h2>
+
+    <label for="valorInicial">Valor inicial do investimento (R$):</label>
+    <input type="number" id="valorInicial" step="0.01" min="0"><br><br>
+
+    <label for="meses">Número de meses:</label>
+    <input type="number" id="meses" step="1" min="1"><br><br>
+
+    <button onclick="calcularInvestimento()">Calcular</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function calcularInvestimento() {
+            let valorInicial = parseFloat(document.getElementById("valorInicial").value);
+            let meses = parseInt(document.getElementById("meses").value);
+            const taxa = 0.02;
+
+            if (isNaN(valorInicial) || valorInicial <= 0 || isNaN(meses) || meses <= 0) {
+                alert("Por favor, insira valores válidos maiores que zero.");
+                return;
+            }
+
+            let valorFinal = valorInicial * Math.pow((1 + taxa), meses);
+
+            document.getElementById("resultado").innerHTML =
+                "Valor inicial: R$ " + valorInicial.toFixed(2) + "<br>" +
+                "Tempo de investimento: " + meses + " meses<br>" +
+                "Valor final: R$ " + valorFinal.toFixed(2);
+        }
+    </script>
+</body>
+</html>
